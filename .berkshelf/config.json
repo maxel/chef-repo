@@ -1,0 +1,16 @@
+{
+  "chef": {
+    "chef_server_url": "https://api.opscode.com/organizations/mlmillion-chef",
+    "validation_client_name": "mlmillion-chef-validator",
+    "validation_key_path": ".chef/mlmillion-chef-validator.pem",
+    "client_key": ".chef/mlmillion.pem",
+    "node_name": "mlmillion"
+  },
+  "vagrant": {
+    "vm": {
+      "box": "opscode-ubuntu-12.04-i386",
+      "box_url": "https://opscode-vm.s3.amazonaws.com/vagrant/opscode_ubuntu-12.04-i386_provisionerless.box",
+      "provision": "chef_client"
+    }
+  }
+}
