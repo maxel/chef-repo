@@ -17,8 +17,16 @@ service "nginx" do
 	action [:start, :enable]
 end
 
+# create the web dir
+directory "/var/www" do
+	owner "www-data"
+	group "www-data"
+	mode 0755
+	action :create
+end
+
 # write index file
-cookbook_file "/var/www/indexhtml" do
+cookbook_file "/var/www/index.html" do
 	source "index.html"
 	mode 0644
 end

@@ -1,8 +1,8 @@
 # See http://docs.opscode.com/config_rb_knife.html for more information on knife configuration options
 
 current_dir = File.dirname(__FILE__)
-http_proxy		"http://web-proxy.houston.hp.com:8080/"
-https_proxy		"http://web-proxy.houston.hp.com:8080/"
+http_proxy		"http://web-proxy.houston.hp.com:8080"
+https_proxy		"https://web-proxy.houston.hp.com:8080"
 log_level                :info
 log_location             STDOUT
 node_name                "mlmillion"
