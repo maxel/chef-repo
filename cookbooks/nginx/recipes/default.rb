@@ -7,18 +7,19 @@
 # All rights reserved - Do Not Redistribute
 #
 
-# install nginx
-package "nginx" do
+package node["package_name"] do
 	action :install
 end
 
 # start the server
-service "nginx" do
+service node["service_name"] do
 	action [:start, :enable]
+    supports :restart => true, :reload => true
+    subscribes :restart, "template[/etc/nginx/sites-available/default]", :immediately
 end
 
 # create the web dir
-directory "/var/www" do
+directory node["doc_root"] do
 	owner "www-data"
 	group "www-data"
 	mode 0755
@@ -26,7 +27,13 @@ directory "/var/www" do
 end
 
 # write index file
-cookbook_file "/var/www/index.html" do
-	source "index.html"
-	mode 0644
+template "#{node["doc_root"]}/index.html" do
+    source "index.html.erb"
+    mode "0644"
+end
+
+# write the default site configuration file
+template "/etc/nginx/sites-available/default" do
+    source "nginx-default-site.erb"
+    mode "0644"
 end
